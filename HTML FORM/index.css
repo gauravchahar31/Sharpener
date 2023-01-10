@@ -1,0 +1,30 @@
+body{
+    background-color: #F0997D;
+}
+
+.formSection{
+    margin: auto;
+    width: 50%;
+    border: 3px solid #A75D5D;
+}
+
+form{
+    text-align: center;
+    display: inline;
+}
+
+input{
+    width:96%;
+    padding: 1%;
+    margin: 0.5%;
+}
+
+#btn{
+    background: #A75D5D;
+    width: 99%;
+    height: 40px;
+}
+
+h1{
+    color: #A75D5D;
+}
