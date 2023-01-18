@@ -16,3 +16,9 @@ function fetchFormData(){
       .catch(err => console.log(err));
 }
 
+window.addEventListener('DOMContentLoaded', () => {
+  const box = document.getElementById('response');
+  axios.get('https://crudcrud.com/api/b70c26c0bd1f448fa03bc2293074cd52/appointments')
+    .then(res => {box.innerHTML = JSON.stringify(res.data)})
+    .catch(err => console.log(err));
+});
