@@ -58,7 +58,7 @@ function fetchFromServer(){
 
 function saveToServer(tableData){
     axiosInstance.post('/bills/', tableData)
-        .then( res => {addBillToList(tableData)})
+        .then( res => {addBillToList(res.data)})
         .catch(err => console.error(err));
 }
 
