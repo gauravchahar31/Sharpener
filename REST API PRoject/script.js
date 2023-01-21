@@ -1,7 +1,7 @@
 let arrayOfBills = [];
 
 const axiosInstance = axios.create({
-    baseURL: 'https://crudcrud.com/api/147f818cc6ed4b5381d906d38838ec1f'
+    baseURL: 'https://crudcrud.com/api/84b5f917888a4eeba6650bcfc6bf11fe'
 })
 
 window.addEventListener('DOMContentLoaded', (event) => {
@@ -67,3 +67,12 @@ function deleteFromServer(tableData){
         .then(res => console.log(res))
         .catch(err => console.error(err));
 }
+
+var shoppingCart = { 
+    Shampoo: 100,
+    Soap: 30,
+    Towel: 200,
+    Water: 50
+}
+
+console.log(shoppingCart.Shampoo);

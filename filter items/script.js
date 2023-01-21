@@ -27,6 +27,7 @@ function removeItem(e){
 function filterItems(e){
   var text = e.target.value.toLowerCase();
   var items = itemList.getElementsByTagName('li');
+  console.log(items);
   Array.from(items).forEach(function(item){
     var itemName = item.firstChild.textContent;
     if(itemName.toLowerCase().indexOf(text) != -1){
