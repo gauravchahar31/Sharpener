@@ -3,6 +3,9 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
 
+const contactController = require('./controllers/contact');
+const successController = require('./controllers/success');
+
 const rootDir = path.dirname(require.main.filename);
 
 app.use(express.static('public'));
@@ -16,16 +19,7 @@ app.get('/', (req, res) => {
     catch(err){
         console.error(err);
     }
-})
-
-app.get('/contact', (req, res) => {
-    try{
-        res.sendFile(path.join(rootDir, 'views', 'contact.html'));
-    }
-    catch(err){
-        console.error(err);
-    }
-})
+});
 
 app.post('/addUser', (req, res) => {
     try{
@@ -38,14 +32,8 @@ app.post('/addUser', (req, res) => {
     }
 })
 
-app.get('/success', (req, res) => {
-    try{
-        res.send('Form Subitted Successfully');
-    }
-    catch(err){
-        console.error(err);
-    }
-})
+app.get('/contact', contactController.renderContact)
+app.get('/success', successController.formSuccess)
 
 app.get('*', (req, res) => {
     try{
