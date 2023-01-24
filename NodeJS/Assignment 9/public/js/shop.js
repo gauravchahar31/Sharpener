@@ -27,11 +27,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 title.innerHTML = product.title;
                 innerContainer.appendChild(title);
 
-                let button = document.createElement('a');
-                button.setAttribute('class', "btn btn-primary")
-                button.setAttribute('href', "#")
-                button.innerHTML = product.price;
-                innerContainer.appendChild(button);
+                let price = document.createElement('p');
+                price.innerHTML = `Price : ${product.price}`;
+                price.setAttribute('class', 'card-text');
+                innerContainer.appendChild(price);
+
+                let editbutton = document.createElement('a');
+                editbutton.setAttribute('class', "btn btn-primary")
+                editbutton.setAttribute('href', `/admin/edit:${product.title}`)
+                editbutton.innerHTML = "Edit";
+                innerContainer.appendChild(editbutton);
+
+                let form = document.createElement('form');
+                form.setAttribute('action', `/admin/delete/${product.title}`);
+                form.setAttribute('method', `post`);
+                innerContainer.appendChild(form);
+
+                let delbutton = document.createElement('button');
+                delbutton.setAttribute('class', "btn btn-primary")
+                delbutton.setAttribute('type', 'submit');
+                delbutton.innerHTML = "Delete";
+                form.appendChild(delbutton);
             })
         })
         .catch(err => console.error(err));

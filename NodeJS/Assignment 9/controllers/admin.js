@@ -7,8 +7,14 @@ exports.addProductPage = (req, res) => {
 }
 
 exports.saveProduct = (req, res) => {
-    // res.send(Product.save(req.data));
     const newProduct = new Product(req.body.name, req.body.image, req.body.price);
     newProduct.save();
     res.redirect('/');
 }
+
+exports.deleteProduct = (req, res) => {
+    const productID = req.params.productID;
+    Product.deleteProduct(productID);
+    res.redirect('/');
+}
+
