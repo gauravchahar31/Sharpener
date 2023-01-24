@@ -6,6 +6,6 @@ exports.homePage = (req, res) => {
     res.sendFile(path.join(rootDir, 'views', 'shop.html'));
 }
 
-exports.getProducts = (req, res) => {
-    res.send(Product.fetchProducts());
+exports.getProducts = async (req, res) => {
+    res.send(await Product.fetchProducts());
 }

@@ -1,17 +1,4 @@
-const path = require('path');
-const fs = require('fs');
-const rootDir = path.dirname(require.main.filename);
-const filePath = path.join(rootDir, 'data', 'products.json')
-
-function readFile(){
-    let data = fs.readFileSync(filePath);
-    data =  JSON.parse(data);
-    return data;
-}
-
-function saveFile(products){
-    fs.writeFileSync(filePath, JSON.stringify(products));
-}
+const database = require('../database/connection')
 
 module.exports = class Product{
     constructor(title, image, price){
@@ -20,24 +7,19 @@ module.exports = class Product{
         this.price = price;
     }
     save(){
-       let products = readFile();
-        let newProduct = {
-            title : this.title,
-            image : this.image,
-            price : this.price
-        };
-        products.push(newProduct);
-        saveFile(products);
+
     }
-    static fetchProducts(){
-        return readFile();
-    }
-    static deleteProduct(productID){
-        let products = readFile();
-        let proToDel = products.find(product => {
-            product.title === productID;
+    static async fetchProducts(){
+        const products = await database.execute('Select * From Products')
+        .then(data => {
+            return data[0];
         })
-        products.splice(products.indexOf(proToDel), 1);
-        saveFile(products);
+        .catch(err => {
+            console.log(err);
+        })
+        return products;
+    }
+    static async deleteProduct(productID){
+        await database.execute(`Delete From Products Where title='${productID}'`);
     }
 };
